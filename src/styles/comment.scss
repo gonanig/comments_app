@@ -17,6 +17,7 @@
   &-right-part {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
   &-content {
     display: flex;
@@ -32,7 +33,7 @@
   &-time {
     font-weight: normal;
     font-size: 18px;
-    line-height: 22px;
+    line-height: 23px;
     color: $grey;
   }
   &-text {
@@ -72,6 +73,13 @@
     color: $placeholder;
     font-weight: 400;
   }
+  &-forAnswer {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: $grey;
+    margin-right: 16px;
+  }
   &-form-button {
     width: 168px;
     height: 56px;
@@ -110,6 +118,10 @@
     color: $grey;
     margin-bottom: 9px;
     cursor: pointer;
+  }
+
+  &-form-cancel-button {
+    justify-content: flex-end;
   }
 }
 .replies {
