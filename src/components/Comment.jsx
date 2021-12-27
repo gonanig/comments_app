@@ -8,8 +8,10 @@ const Comment = ({
   deleteComment,
   activeComment,
   addComment,
+  updateComment,
   setActiveComment,
   parentId = null,
+  backendComments,
 }) => {
   const { username, id, body, createAt, userId } = comment;
 
@@ -29,30 +31,9 @@ const Comment = ({
 
   const replyId = parentId ? parentId : id;
 
-  const replyComment = (text, replyId) => {
-    parentId = null;
-    fetch(`http://localhost:8000/comments?_embed=replies`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: 651151,
-        body: text,
-        username: "Terry Bator",
-        parentId: activeComment.id,
-        userId: 1,
-        createAt: "22222",
-      }),
-    })
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((comment) => {
-        replies.push(comment);
-        setActiveComment(null);
-      });
-  };
+  const toAnswer = backendComments?.filter(
+    (comment) => comment?.id == activeComment?.id
+  );
 
   return (
     <div className="comment">
@@ -68,9 +49,19 @@ const Comment = ({
       <div className="comment-right-part">
         <div className="comment-content">
           <div className="comment-author">{username}</div>
-          <div className="comment-time">{createdAt}</div>
+          {/* <span> to {toAnswer.map((obj) => obj.username)} </span> */}
+          <div className="comment-time"> {createdAt}</div>
         </div>
-        <div className="comment-text">{body}</div>
+        {!isEditing && <div className="comment-text">{body}</div>}
+        {isEditing && (
+          <CommentForm
+            submitLabel="Update"
+            hasCancelButton
+            initialText={body}
+            handleSubmit={(text) => updateComment(text, id, parentId)}
+            handleCancel={() => setActiveComment(null)}
+          />
+        )}
         <div className="comment-actions">
           {canEdit && (
             <span
@@ -107,7 +98,11 @@ const Comment = ({
         {isReplying && (
           <CommentForm
             submitLabel="Reply"
-            replyComment={(text) => replyComment(text, replyId)}
+            backendComments={backendComments}
+            activeComment={activeComment}
+            hasCancelButton
+            handleCancel={() => setActiveComment(null)}
+            handleSubmit={(text) => addComment(text, replyId)}
           />
         )}
         {replies.length > 0 && (
@@ -118,11 +113,13 @@ const Comment = ({
                 key={reply.id}
                 replies={[]}
                 deleteComment={deleteComment}
+                updateComment={updateComment}
                 addComment={addComment}
                 parentId={id}
                 activeComment={activeComment}
                 setActiveComment={setActiveComment}
                 currentUserId={currentUserId}
+                backendComments={backendComments}
               />
             ))}
           </div>

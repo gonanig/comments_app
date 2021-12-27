@@ -2,29 +2,53 @@ import { useState } from "react";
 import "../styles/comment.scss";
 import faker from "faker";
 
-const CommentForm = ({ handleSubmit, submitLabel, replyComment }) => {
-  const [text, setText] = useState("");
+const CommentForm = ({
+  handleSubmit,
+  submitLabel,
+  hasCancelButton = false,
+  initialText = "",
+  handleCancel,
+  activeComment,
+  backendComments,
+}) => {
+  const [text, setText] = useState(initialText);
   const isTextAreaDisabled = text.length === 0;
   const onSubmit = (event) => {
     event.preventDefault();
-    if (submitLabel === "Send") {
-      handleSubmit(text);
-    } else {
-      console.log("fsfs");
-      replyComment(text);
-    }
-
+    handleSubmit(text);
     setText("");
   };
 
+  const toAnswer = backendComments?.filter(
+    (comment) => comment?.id == activeComment?.id
+  );
   return (
-    <div className="comment-form">
-      {submitLabel !== "Reply" && (
+    <div
+      className={
+        submitLabel == "Reply" || submitLabel == "Update"
+          ? "comment-form-replies"
+          : "comment-form"
+      }
+    >
+      {submitLabel !== "Reply" && submitLabel !== "Update" && (
         <div className="comment-image-container">
           <img src={faker.image.people()} alt="User Avatar " />
         </div>
       )}
       <form>
+        <div className="comment-action-container">
+          {submitLabel == "Reply" && (
+            <span>to {toAnswer.map((obj) => obj.username)} </span>
+          )}
+          {hasCancelButton && (
+            <span
+              className="coment-form-button comment-form-cancel-button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </span>
+          )}
+        </div>
         <textarea
           placeholder="Your message"
           className="comment-form-textarea"
@@ -33,7 +57,7 @@ const CommentForm = ({ handleSubmit, submitLabel, replyComment }) => {
         ></textarea>
         <button
           disabled={isTextAreaDisabled}
-          className="comment-form-button"
+          className={isTextAreaDisabled? "comment-form-button comment-form-button-disabled" :"comment-form-button"}
           onClick={onSubmit}
         >
           {submitLabel}

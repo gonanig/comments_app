@@ -1,6 +1,6 @@
 @import "variables.scss";
 .comment {
-  margin: 48px 0px;
+  margin: 40px 0px;
   display: flex;
 
   &:first-child {
@@ -48,7 +48,13 @@
     padding-bottom: 46px;
     border-bottom: 1px solid $border;
   }
-  &-form form {
+  &-form-replies form {
+    margin-top: 26px;
+    width: 100%;
+    display: flex;
+  }
+  &-form form,
+  &-form-replies form {
     width: 100%;
     align-items: flex-end;
     display: flex;
@@ -77,15 +83,41 @@
     background-color: $green;
     margin: 16px 0px 0px;
     cursor: pointer;
+    border: none;
+  }
+  &-form-button-disabled {
+    background-color: $grey;
+  }
+  &-action {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: $grey;
+    cursor: pointer;
+    margin-right: 24px;
+  }
+  &-action-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &-form span,
+  &-form-replies span {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: $grey;
+    margin-bottom: 9px;
+    cursor: pointer;
   }
 }
 .replies {
   margin: 0 -8px;
-  margin-top: 40px;
 
   &-image-container img {
-    width: 88px;
-    height: 88px;
+    width: 110px;
+    height: 111px;
     border-radius: 8px;
     border: 1px solid $border;
     margin-right: 32px;

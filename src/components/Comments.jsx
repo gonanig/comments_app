@@ -17,11 +17,12 @@ const Comments = ({ currentUserId }) => {
       .sort(
         (a, b) =>
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-      );
+      )
+      .reverse();
   };
 
-  const addComment = (text, parentId) => {
-    parentId = null;
+  const addComment = (text, parentId = null) => {
+    // parentId = null;
     fetch("http://localhost:8000/comments", {
       method: "POST",
       headers: {
@@ -31,7 +32,7 @@ const Comments = ({ currentUserId }) => {
         id: Math.random().toString(36).substr(2, 9),
         body: text,
         username: "Terry Bator",
-        parentId: null,
+        parentId,
         userId: "1",
         createAt: new Date().toISOString(),
       }),
@@ -61,19 +62,53 @@ const Comments = ({ currentUserId }) => {
     }
   };
 
+  const updateComment = (text, commentId, parentId) => {
+    fetch(`http://localhost:8000/comments/${commentId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        body: text,
+        id: commentId,
+        username: "Terry Bator",
+        parentId,
+        userId: "1",
+        createAt: new Date().toISOString(),
+      }),
+    })
+      .then((resp) => {
+        return resp.json();
+      })
+      .then(() => {
+        const updatedBackendComments = backendComments.map((backendComment) => {
+          if (backendComment.id === commentId) {
+            return { ...backendComment, body: text };
+          }
+          return backendComment;
+        });
+        setBackendComments(updatedBackendComments);
+        setActiveComment(null);
+      });
+  };
+
   useEffect(() => {
     fetch("http://localhost:8000/comments?_embed=replies")
       .then((resp) => {
         return resp.json();
       })
       .then((data) => {
-        setBackendComments(data);
+        setBackendComments(data.reverse());
       });
   }, []);
 
   return (
     <div className="comments">
-      <CommentForm submitLabel="Send" handleSubmit={addComment} />
+      <CommentForm
+        submitLabel="Send"
+        handleSubmit={addComment}
+        backendComments={backendComments}
+      />
       <div>
         {rootComments.map((rootComment) => (
           <div key={rootComment.id}>
@@ -86,6 +121,8 @@ const Comments = ({ currentUserId }) => {
               activeComment={activeComment}
               setActiveComment={setActiveComment}
               addComment={addComment}
+              updateComment={updateComment}
+              backendComments={backendComments}
             />
           </div>
         ))}
