@@ -1,0 +1,76 @@
+{
+  "comments": [
+    {
+      "id": 1,
+      "body": "First comment",
+      "username": "Terry Bator",
+      "parentId": null,
+      "userId": "1",
+      "createAt": "2021-12-26T23:00:33.010+02:00"
+    },
+    {
+      "id": 2,
+      "body": "Second comment",
+      "username": "Angel Westervelt",
+      "userId": "2",
+      "parentId": null,
+      "createAt": "2021-12-26T23:00:33.010+02:00"
+    },
+    {
+      "id": 3,
+      "body": "Great",
+      "username": "Jordyn Dorwart",
+      "userId": "3",
+      "parentId": 1,
+      "createAt": "2021-12-26T23:00:33.010+02:00"
+    },
+    {
+      "id": 4,
+      "body": "Cool!",
+      "userId": "4",
+      "username": "Omar Torff",
+      "parentId": 1,
+      "createAt": "2021-12-26T23:00:33.010+02:00"
+    },
+    {
+      "id": 5,
+      "body": "Not bad!",
+      "userId": "5",
+      "username": "Kerry Bator",
+      "parentId": 2,
+      "createAt": "2021-12-26T23:00:33.010+02:00"
+    },
+    {
+      "id": "d4giexc08",
+      "body": "3232",
+      "username": "Terry Bator",
+      "parentId": 5,
+      "userId": "1",
+      "createAt": "2021-12-27T09:48:35.819Z"
+    },
+    {
+      "id": "fv04th56v",
+      "body": "sa",
+      "username": "Terry Bator",
+      "parentId": null,
+      "userId": "1",
+      "createAt": "2021-12-27T10:13:00.768Z"
+    },
+    {
+      "id": 651111,
+      "body": "tak i napushem",
+      "username": "Terry Bator",
+      "parentId": "fv04th56v",
+      "userId": 1,
+      "createAt": "22222"
+    },
+    {
+      "id": 651151,
+      "body": "12",
+      "username": "Terry Bator",
+      "parentId": 3,
+      "userId": 1,
+      "createAt": "22222"
+    }
+  ]
+}

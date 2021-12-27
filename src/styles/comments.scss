@@ -1,0 +1,13 @@
+@import "variables.scss";
+
+.comments {
+  background-color: $white;
+  height: 100%;
+  width: 80vw;
+  display: flex;
+  padding: 0px 88px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-family: "Inter", sans-serif;
+  flex-direction: column;
+}
