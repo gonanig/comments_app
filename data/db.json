@@ -44,42 +44,6 @@
       "parentId": 2,
       "forAnswer": "Angel Westervelt",
       "createAt": "2021-12-26T23:00:33.010+02:00"
-    },
-    {
-      "id": "u46miwfr0",
-      "body": "adssad",
-      "username": "Terry Bator",
-      "forAnswer": null,
-      "parentId": "5ij6hlmb7",
-      "userId": "1",
-      "createAt": "2021-12-27T21:11:51.369Z"
-    },
-    {
-      "id": "1jam49yne",
-      "body": "fs",
-      "username": "Terry Bator",
-      "parentId": "mq8o8v62h",
-      "forAnswer": null,
-      "userId": "1",
-      "createAt": "2021-12-27T22:29:55.881Z"
-    },
-    {
-      "id": "hgex7b2ah",
-      "body": "dsadada",
-      "username": "Terry Bator",
-      "parentId": "d9fk79rw1",
-      "forAnswer": null,
-      "userId": "1",
-      "createAt": "2021-12-27T22:30:31.175Z"
-    },
-    {
-      "id": "8e6nbyfpy",
-      "body": "dsdad",
-      "username": "Terry Bator",
-      "parentId": "d9fk79rw1",
-      "forAnswer": null,
-      "userId": "1",
-      "createAt": "2021-12-27T22:31:35.368Z"
     }
   ]
 }
