@@ -1,3 +1,5 @@
+"use strict";
+
 import faker from "faker";
 import "../styles/comment.scss";
 import CommentForm from "./CommentForm";
@@ -12,9 +14,9 @@ const Comment = ({
   setActiveComment,
   parentId = null,
   backendComments,
+  avatar,
 }) => {
-  const { username, id, body, createAt, userId } = comment;
-
+  const { username, id, body, createAt, userId, forAnswer } = comment;
   const canReply = Boolean(currentUserId);
   const canEdit = currentUserId == userId;
   const canDelete = currentUserId == userId;
@@ -31,10 +33,6 @@ const Comment = ({
 
   const replyId = parentId ? parentId : id;
 
-  const toAnswer = backendComments?.filter(
-    (comment) => comment?.id == activeComment?.id
-  );
-
   return (
     <div className="comment">
       <div
@@ -44,12 +42,34 @@ const Comment = ({
             : "replies-image-container"
         }
       >
-        <img src={faker.image.people()} alt="User Avatar " />
+        {!avatar ? (
+          <img
+            src={
+              currentUserId == 1 && userId == 1
+                ? "https://goop-img.com/wp-content/uploads/2020/06/Mask-Group-2.png"
+                : faker.image.people()
+            }
+            alt="User Avatar "
+          />
+        ) : (
+          <img
+            src={
+              currentUserId == 1 && userId == 1
+                ? "https://goop-img.com/wp-content/uploads/2020/06/Mask-Group-2.png"
+                : avatar
+            }
+            alt="User Avatar "
+          />
+        )}
       </div>
       <div className="comment-right-part">
         <div className="comment-content">
           <div className="comment-author">{username}</div>
-          {/* <span> to {toAnswer.map((obj) => obj.username)} </span> */}
+          {forAnswer && (
+            <div className="comment-forAnswer">
+              {forAnswer ? ` to ${forAnswer}` : null}
+            </div>
+          )}
           <div className="comment-time"> {createdAt}</div>
         </div>
         {!isEditing && <div className="comment-text">{body}</div>}
@@ -77,7 +97,12 @@ const Comment = ({
             </span>
           )}
           {canDelete && (
-            <span className="comment-action" onClick={() => deleteComment(id)}>
+            <span
+              className="comment-action"
+              onClick={() => {
+                deleteComment(id);
+              }}
+            >
               Delete
             </span>
           )}
@@ -109,6 +134,7 @@ const Comment = ({
           <div className="replies">
             {replies.map((reply) => (
               <Comment
+                avatar={faker.image.animals()}
                 comment={reply}
                 key={reply.id}
                 replies={[]}

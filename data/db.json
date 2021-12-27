@@ -6,6 +6,7 @@
       "username": "Terry Bator",
       "parentId": null,
       "userId": "1",
+      "forAnswer": null,
       "createAt": "2021-12-27T16:54:13.382Z"
     },
     {
@@ -13,6 +14,7 @@
       "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit turpis ultrices massa?",
       "username": "Angel Westervelt",
       "userId": "2",
+      "forAnswer": null,
       "parentId": null,
       "createAt": "2021-12-26T23:00:33.010+02:00"
     },
@@ -22,6 +24,7 @@
       "username": "Jordyn Dorwart",
       "userId": "3",
       "parentId": 1,
+      "forAnswer": "Terry Bator",
       "createAt": "2021-12-26T23:00:33.010+02:00"
     },
     {
@@ -30,6 +33,7 @@
       "userId": "4",
       "username": "Omar Torff",
       "parentId": 1,
+      "forAnswer": "Terry Bator",
       "createAt": "2021-12-26T23:00:33.010+02:00"
     },
     {
@@ -38,39 +42,44 @@
       "userId": "5",
       "username": "Kerry Bator",
       "parentId": 2,
+      "forAnswer": "Angel Westervelt",
       "createAt": "2021-12-26T23:00:33.010+02:00"
     },
     {
-      "id": "v0dyzfdoh",
-      "body": "klkl",
+      "id": "u46miwfr0",
+      "body": "adssad",
       "username": "Terry Bator",
-      "parentId": 1,
+      "forAnswer": null,
+      "parentId": "5ij6hlmb7",
       "userId": "1",
-      "createAt": "2021-12-27T19:25:24.774Z"
+      "createAt": "2021-12-27T21:11:51.369Z"
     },
     {
-      "id": "3e1gko0l8",
-      "body": "ooiioi",
+      "id": "1jam49yne",
+      "body": "fs",
       "username": "Terry Bator",
-      "parentId": 1,
+      "parentId": "mq8o8v62h",
+      "forAnswer": null,
       "userId": "1",
-      "createAt": "2021-12-27T19:25:33.866Z"
+      "createAt": "2021-12-27T22:29:55.881Z"
     },
     {
-      "id": "o7kzb93mc",
-      "body": "wewe",
+      "id": "hgex7b2ah",
+      "body": "dsadada",
       "username": "Terry Bator",
-      "parentId": 1,
+      "parentId": "d9fk79rw1",
+      "forAnswer": null,
       "userId": "1",
-      "createAt": "2021-12-27T19:26:15.472Z"
+      "createAt": "2021-12-27T22:30:31.175Z"
     },
     {
-      "id": "j91wnlzg4",
-      "body": "dw",
+      "id": "8e6nbyfpy",
+      "body": "dsdad",
       "username": "Terry Bator",
-      "parentId": 2,
+      "parentId": "d9fk79rw1",
+      "forAnswer": null,
       "userId": "1",
-      "createAt": "2021-12-27T19:28:00.857Z"
+      "createAt": "2021-12-27T22:31:35.368Z"
     }
   ]
 }

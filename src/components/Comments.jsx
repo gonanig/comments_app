@@ -1,3 +1,4 @@
+"use strict";
 import { useEffect, useState } from "react";
 import "../styles/comments.scss";
 import Comment from "./Comment";
@@ -11,6 +12,12 @@ const Comments = ({ currentUserId }) => {
     (backendComment) => backendComment.parentId === null
   );
 
+  const toAnswer = backendComments?.filter(
+    (comment) => comment?.id == activeComment?.id
+  );
+
+  const forAnswer = toAnswer.map((obj) => obj.username).toString();
+
   const getReplies = (commentId) => {
     return backendComments
       .filter((backendComment) => backendComment.parentId === commentId)
@@ -20,9 +27,7 @@ const Comments = ({ currentUserId }) => {
       )
       .reverse();
   };
-
   const addComment = (text, parentId = null) => {
-    // parentId = null;
     fetch("http://localhost:8000/comments", {
       method: "POST",
       headers: {
@@ -33,6 +38,7 @@ const Comments = ({ currentUserId }) => {
         body: text,
         username: "Terry Bator",
         parentId,
+        forAnswer: forAnswer,
         userId: "1",
         createAt: new Date().toISOString(),
       }),

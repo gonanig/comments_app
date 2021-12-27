@@ -1,6 +1,6 @@
+"use strict";
 import { useState } from "react";
 import "../styles/comment.scss";
-import faker from "faker";
 
 const CommentForm = ({
   handleSubmit,
@@ -32,22 +32,26 @@ const CommentForm = ({
     >
       {submitLabel !== "Reply" && submitLabel !== "Update" && (
         <div className="comment-image-container">
-          <img src={faker.image.people()} alt="User Avatar " />
+          <img
+            src={
+              "https://goop-img.com/wp-content/uploads/2020/06/Mask-Group-2.png"
+            }
+            alt="User Avatar "
+          />
         </div>
       )}
       <form>
-        <div className="comment-action-container">
+        <div
+          className={
+            submitLabel == "Update"
+              ? "comment-action-container comment-form-cancel-button"
+              : "comment-action-container"
+          }
+        >
           {submitLabel == "Reply" && (
             <span>to {toAnswer.map((obj) => obj.username)} </span>
           )}
-          {hasCancelButton && (
-            <span
-              className="coment-form-button comment-form-cancel-button"
-              onClick={handleCancel}
-            >
-              Cancel
-            </span>
-          )}
+          {hasCancelButton && <span onClick={handleCancel}>Cancel</span>}
         </div>
         <textarea
           placeholder="Your message"
@@ -57,7 +61,11 @@ const CommentForm = ({
         ></textarea>
         <button
           disabled={isTextAreaDisabled}
-          className={isTextAreaDisabled? "comment-form-button comment-form-button-disabled" :"comment-form-button"}
+          className={
+            isTextAreaDisabled
+              ? "comment-form-button comment-form-button-disabled"
+              : "comment-form-button"
+          }
           onClick={onSubmit}
         >
           {submitLabel}
